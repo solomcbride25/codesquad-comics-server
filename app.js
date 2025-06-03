@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors')
 const path = require('path');
+const bookRoutes = require('./routes/bookRoutes');
 
 const app = express();
 const PORT = 8080;
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(express.static());
+app.use('/api/books', bookRoutes);
 
 app.get('/', (req, res, next) => {
    res.status().json({success: true, message:"This route points to the Home page"});
