@@ -1,20 +1,24 @@
+require('dotenv').config();
 const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
 const bookRoutes = require("./routes/bookRoutes");
 const authRoutes = require("./routes/authRoutes");
+const { session } = require('./config/authStrategy');
 
 const app = express();
 const PORT = 8080;
 
 //
-app.use(helmet());
+app.use(helmet(helmet.contentSecurityPolicy=false));
 app.use(morgan("dev"));
-app.use(cors());
+app.use(cors({credentials: true, origin: true}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static());
+app.use(express.urlencoded({extended: true}))
+app.use(express-session)
 app.use("/api/books", bookRoutes);
 app.use("/api/auth", authRoutes);
 
