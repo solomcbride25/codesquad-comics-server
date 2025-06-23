@@ -1,4 +1,4 @@
-const booksData = require('books.js');
+const booksData = require('../data/books.js');
 
 const getAllBooks = (req, res, next) => {
   try {
