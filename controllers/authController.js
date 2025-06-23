@@ -75,20 +75,6 @@ const logout = async (req, res, next) => {
   sessionDestruction();
 };
 
-const localLogin = async (req, res, next) => {
-  const result = true;
-  function mockPassport(err, user) {
-    if (err) {
-      return next(err);
-    }
-  }
-  mockPassport();
-  json({
-    success: true,
-    message: "Login successful...",
-  });
-};
-
 const logoutRequest = async (req, res, next) => {
   if (err) {
     return next(err);
@@ -107,11 +93,11 @@ const signupRequest = async (req, res, next) => {
     return res.status(400).json({
       message: "First name, username, and password are required.",
       statusCode: 400,
-    });
-  }};
-
+    })
+  }};;
+  
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = async (req, res, next) => { await bcrypt.hash(password, 10);
     const newUser = new User ({
       firstName,
       lastName,
@@ -119,7 +105,8 @@ const signupRequest = async (req, res, next) => {
       password: hashedPassword,
       googleId,
       githubId,
-    });
+    })
+  };
   
   await newUser.save()
   req.login(newUser, (err) => {
