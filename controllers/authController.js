@@ -106,12 +106,14 @@ const signupRequest = async (req, res, next) => {
       googleId,
       githubId,
     })
-  };
+  }
   
-  await newUser.save()
+const newUser = async (req, res, next) => {
+await newUser.save();
   req.login(newUser, (err) => {
     if (err) return next(err);
   })
+};
 
   const userCopy = newUser.toObject();
   userCopy.password = undefined;
@@ -129,6 +131,6 @@ module.exports = {
   login,
   register,
   logout,
-  localLogin,
+  loginLocal,
   signupRequest
 }
