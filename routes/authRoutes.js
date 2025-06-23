@@ -8,17 +8,17 @@ const {
   logout,
   localLogin,
   signupRequest,
-} = require("../controllers/authController");
+} = require("../controllers/authController.js");
 
 router.post("/register", register);
 
 router.get("/login", login);
 
-router.get("/login/error", (req, res) => {
+router.get("/loginlocal/error", (req, res) => {
   res.status(401).json({ success: false, message: "Login error" });
 });
 
-router.post("/login/local", localLogin);
+router.post("/loginlocal", localLogin);
 
 router.post("/signup", signupRequest)
 

@@ -1,6 +1,7 @@
 const passport = require("passport");
 const bcrypt = require("bcrypt");
-const { request } = require("express");
+const express = require("express");
+const User = require("../models/userModel.js")
 
 const register = async (req, res, next) => {
   const { firstName, lastName, username, password } = req.body;
@@ -29,16 +30,15 @@ const login = async (req, res, next) => {
 };
 
 const loginLocal = (req, res, next) => {
-  passport.authenticate("local", async(err, user, info));
-  try {
-    if (error) return next(err);
+  passport.authenticate("local", async(err, user, info) => {
+    if (err) return next(err);
 
     if (!user) {
       return res.status(401).json({
         message: info?.message || "Authentication failed",
         statusCode: 401,
       });
-    }
+  }
     req.login(user, (err) => {
       if (err) return next(err);
 
@@ -51,11 +51,7 @@ const loginLocal = (req, res, next) => {
         data: { user: userCopy },
       });
     });
-  } catch (error) {
-    next(err);
-    req, res, next;
-  }
-};
+  }) (req, res, next) 
 
 const logout = async (req, res, next) => {
   console.log("Initializing logout controller logic...");
@@ -74,16 +70,15 @@ const logout = async (req, res, next) => {
 };
 
 const logoutRequest = async (req, res, next) => {
-  if (err) {
-    return next(err);
-  } else {
-    sessionDestruction();
+  req.logout((err) => {
+  if (err) return next(err);
     res.clearCookie("connect.sid", { path: "/" });
     res.status(200).json({
       success: true,
       statusCode: 200,
+      message: "User logged out",
     });
-  }
+  });
 };
 
 const signupRequest = async (req, res, next) => {
@@ -123,12 +118,13 @@ try {
 } catch (err) {
   next(err);
 }
-};
+}};
 
-module.exports = {
+module.exports = { 
   login,
   register,
   logout,
   loginLocal,
-  signupRequest,
-};
+  logoutRequest,
+  signupRequest
+}
