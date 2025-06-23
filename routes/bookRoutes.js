@@ -7,7 +7,7 @@ const {
   deleteBook,
 } = require("../controllers/bookControllers");
 
-const bookController = require("../controllers/bookRoutes")
+const bookController = require("../controllers/bookControllers")
 
 const router = express.Router();
 
