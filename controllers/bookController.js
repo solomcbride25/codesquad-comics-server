@@ -3,7 +3,7 @@ const booksData = require(books.js);
 const getAllBooks = (req, res, next) => {
   try {
     const books = booksData;
-    await booksData.find();
+    awaitbooksData.find();
     res.status(200).json({
       success: true,
       message: "Book data retrieved",
@@ -16,10 +16,10 @@ const getAllBooks = (req, res, next) => {
 const getBook = (req, res, next) => {
   try {
    // const book = booksData.find((book) => book._id === _id);
-   await getBook.findOne(_id);
+   awaitgetBook.findOne(_id);
    res.status().json({
     success: true,
-    data: book;
+    data: book,
     message: "Book data found",
   });
   } catch {

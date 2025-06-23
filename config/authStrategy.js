@@ -23,7 +23,7 @@ passport.use(
     })
 );
 
-passport.use(
+passport.use()
     new GoogleStrategy(
     {
         clientID: process.env.GOOGLE_CLIENT_ID,
@@ -36,10 +36,8 @@ passport.use(
             
             if (existingUser) {
                 return done(null, existingUser);
-            }
-        }
 
-        const newUser = new User({
+            } const newUser = new User({
             googleId: profile.id,
             username: profile.displayName,
             email: profile.emails[0].value,
@@ -48,8 +46,10 @@ passport.use(
         await newUser.save();
         return done(null, newUser);
     } catch (error) {
-        return done (err);
-    });
+        return done (error);
+    }}
+);
+
 
     passport.serializeUser((user, done) => {
         done(null, user.id);
@@ -62,6 +62,7 @@ passport.use(
         } catch (err) {
           done(err);
         }
-      });
+      }
+    );
       
       module.exports = passport;

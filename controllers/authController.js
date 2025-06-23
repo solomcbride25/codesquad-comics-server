@@ -47,15 +47,17 @@ const loginLocal = (req, res, next) => {
 
   return res.status(200).json({
     message: "Login successful",
-    statusCode: 200;
+    statusCode: 200,
     data: {user: userCopy},
   });
 });
 
   } catch (error) {
     next(err);
+    (req,res,next);
   }
-} (req,res,next);
+} 
+
 
 const logout = async (req, res, next) => {
   console.log("Initializing logout controller logic...");
@@ -106,7 +108,7 @@ const signupRequest = async (req, res, next) => {
       message: "First name, username, and password are required.",
       statusCode: 400,
     });
-  }
+  }};
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
