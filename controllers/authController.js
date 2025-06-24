@@ -130,6 +130,6 @@ module.exports = {
   register,
   // logout,
   loginLocal,
-  logoutRequest,
-  signupRequest
+  // logoutRequest,
+  // signupRequest
 }
