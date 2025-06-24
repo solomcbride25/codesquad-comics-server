@@ -128,7 +128,7 @@ try {
 module.exports = { 
   login,
   register,
-  logout,
+  // logout,
   loginLocal,
   logoutRequest,
   signupRequest
