@@ -5,7 +5,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 const bookRoutes = require("./routes/bookRoutes");
 const authRoutes = require("./routes/authRoutes");
-const { session } = require('./config/authStrategy');
 const session = require("express-session");
 
 const app = express();
@@ -17,12 +16,6 @@ app.use(morgan("dev"));
 app.use(cors({credentials: true, origin: true}));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'defaultsecret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {secure: false}
-}));
 // app.use(express.static());
 app.use(express.urlencoded({extended: true}))
 app.use(express-session)

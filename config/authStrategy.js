@@ -64,5 +64,11 @@ passport.use(
         }
       }
     );
+
+    module.exports.sessionMiddleware = session({
+        secret: process.env.SESSION_SECRET || 'devsecret',
+        resave: false,
+        saveUnitialized: true,
+    });
       
       module.exports = passport;
