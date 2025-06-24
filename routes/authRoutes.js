@@ -3,10 +3,11 @@ const passport = require('passport');
 const router = express.Router();
 
 const {
-  register,
   login,
+  register,
   loginLocal,
-  signupRequest,
+  logoutRequest,
+  signupRequest
 } = require("../controllers/authController.js");
 
 router.post("/register", register);
@@ -22,7 +23,7 @@ router.post("/loginlocal", loginLocal);
 router.post("/signup", signupRequest)
 
 
-router.post("/logout", logout);
+router.post("/logout", logoutRequest);
 
 router.get("/unauthenticated", (req, res) => {
   console.log("Returning to the homepage...");
