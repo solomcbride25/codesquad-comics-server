@@ -1,9 +1,6 @@
 const passport = require("passport");
 const bcrypt = require("bcrypt");
-const express = require("express");
 const User = require("../models/userModel.js")
-
-express(); 
 
 const register = async (req, res, next) => {
   const { firstName, lastName, username, password } = req.body;
@@ -53,25 +50,8 @@ const loginLocal = (req, res, next) => {
         data: { user: userCopy },
       });
     });
-  }) (req, res, next) 
-
-const logout = async (req, res, next) => {
-  console.log("Initializing logout controller logic...");
-  res.clearCookie("connect.sid", { path: "/" });
-  res.status(200).json({
-    message: "User logging out",
-  });
-  function sessionDestruction(err) {
-    //error handling as a final check and a failsafe
-    if (err) {
-      return next(err);
-      console.log("Logout function activated. Logging out...");
-    }
-  }
-  sessionDestruction();
+  })(req, res, next) 
 };
-
-logout();
 
 const logoutRequest = async (req, res, next) => {
   req.logout((err) => {
@@ -83,8 +63,7 @@ const logoutRequest = async (req, res, next) => {
       message: "User logged out",
     });
   });
-};
-logoutRequest();
+}
 
 const signupRequest = async (req, res, next) => {
   const { firstName, lastName, username, password, googleId, githubId } =
@@ -119,17 +98,15 @@ try {
         data: { user: userCopy },
     });
   });
-
 } catch (err) {
   next(err);
 }
-}};
+};
 
 module.exports = { 
   login,
   register,
-  // logout,
   loginLocal,
-  // logoutRequest,
-  // signupRequest
+  logoutRequest,
+  signupRequest
 }
