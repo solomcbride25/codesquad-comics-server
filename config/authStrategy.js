@@ -23,14 +23,13 @@ passport.use(
     })
 );
 
-passport.use()
+passport.use(
     new GoogleStrategy(
     {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: "/auth/google/callback",
-    },
-    async (accessToken, refreshToken, profile, done) => {
+    }, async (accessToken, refreshToken, profile, done) => {
         try {
             const existingUser = await User.findOne({googleId: profile.id});
             
@@ -47,9 +46,10 @@ passport.use()
         return done(null, newUser);
     } catch (error) {
         return done (error);
-    }}
+    }
+   }
+  )
 );
-
 
     passport.serializeUser((user, done) => {
         done(null, user.id);
