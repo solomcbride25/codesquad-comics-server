@@ -5,8 +5,7 @@ const router = express.Router();
 const {
   register,
   login,
-  logout,
-  localLogin,
+  loginLocal,
   signupRequest,
 } = require("../controllers/authController.js");
 
@@ -18,7 +17,7 @@ router.get("/loginlocal/error", (req, res) => {
   res.status(401).json({ success: false, message: "Login error" });
 });
 
-router.post("/loginlocal", localLogin);
+router.post("/loginlocal", loginLocal);
 
 router.post("/signup", signupRequest)
 
