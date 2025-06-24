@@ -6,6 +6,7 @@ const cors = require("cors");
 const bookRoutes = require("./routes/bookRoutes");
 const authRoutes = require("./routes/authRoutes");
 const { session } = require('./config/authStrategy');
+require("dotenv").config();
 
 const app = express();
 const PORT = 8080;
