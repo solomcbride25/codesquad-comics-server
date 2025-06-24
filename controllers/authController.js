@@ -3,6 +3,8 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const User = require("../models/userModel.js")
 
+express(); 
+
 const register = async (req, res, next) => {
   const { firstName, lastName, username, password } = req.body;
   console.log(req.body);
@@ -69,6 +71,8 @@ const logout = async (req, res, next) => {
   sessionDestruction();
 };
 
+logout();
+
 const logoutRequest = async (req, res, next) => {
   req.logout((err) => {
   if (err) return next(err);
@@ -80,6 +84,7 @@ const logoutRequest = async (req, res, next) => {
     });
   });
 };
+logoutRequest();
 
 const signupRequest = async (req, res, next) => {
   const { firstName, lastName, username, password, googleId, githubId } =
