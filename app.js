@@ -12,7 +12,7 @@ const app = express();
 const PORT = 8080;
 
 //
-app.use(helmet(helmet.contentSecurityPolicy=false));
+app.use(helmet());
 app.use(morgan("dev"));
 app.use(cors({credentials: true, origin: true}));
 app.use(express.urlencoded({ extended: true }));
